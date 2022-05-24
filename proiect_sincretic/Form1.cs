@@ -29,14 +29,14 @@ namespace proiect_sincretic
                 numarPPTB.Text = "0";
                 return;
             }
-            String[] subsiruri = stringSir.Split(new char[] { ',', ' '});
+            String[] subsiruri = stringSir.Split(',');
 
             listaNumere = new List<UInt64>();
 
             foreach (String subsir in subsiruri)
             {
                 UInt64 numar;
-                if (UInt64.TryParse(subsir, out numar))
+                if (UInt64.TryParse(subsir.Trim(), out numar))
                 {
                     listaNumere.Add(numar);
                 }

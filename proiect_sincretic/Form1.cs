@@ -19,10 +19,35 @@ namespace proiect_sincretic
         {
             InitializeComponent();
             alg = new Algoritm();
+        }
+
+        private void listaNumereTB_TextChanged(object sender, EventArgs e)
+        {
+            String stringSir = listaNumereTB.Text;
+            if(String.IsNullOrWhiteSpace(stringSir))
+            {
+                numarPPTB.Text = "0";
+                return;
+            }
+            String[] subsiruri = stringSir.Split(new char[] { ',', ' '});
 
             listaNumere = new List<UInt64>();
-            listaNumere.AddRange(new UInt64[] { 32, 64, 16, 8, 9, 13});
-            MessageBox.Show(alg.numaraPatratePerfecte(listaNumere).ToString());
+
+            foreach (String subsir in subsiruri)
+            {
+                UInt64 numar;
+                if (UInt64.TryParse(subsir, out numar))
+                {
+                    listaNumere.Add(numar);
+                }
+                else
+                {
+                    numarPPTB.Text = "Eroare in sirul dat!";
+                    return;
+                }
+            }
+
+            numarPPTB.Text = alg.numaraPatratePerfecte(listaNumere).ToString();
         }
     }
 }
